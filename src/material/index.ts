@@ -1,6 +1,8 @@
 import { fetch } from 'ofetch'
 import { fileIcons } from '../../vendor/vscode-material-icon-theme/src/icons/fileIcons'
 import { folderIcons } from '../../vendor/vscode-material-icon-theme/src/icons/folderIcons'
+import { languageIcons } from '../../vendor/vscode-material-icon-theme/src/icons/languageIcons'
+import { mergeInner } from './util'
 
 export async function getIconFromFile(fileName: string, isUseDefault = true) {
   let iconName = fileIcons.icons.find((item) => {
@@ -12,6 +14,13 @@ export async function getIconFromFile(fileName: string, isUseDefault = true) {
 
     return false
   })?.name
+
+  // langauge
+  const mergedLanguageIcons = mergeInner(languageIcons)
+  const langIcoName = mergedLanguageIcons.find((item) => {
+    return item.ids.find(it => fileName.endsWith(`.${it}`))
+  })?.icon.name
+  iconName ||= langIcoName
 
   if (!iconName && isUseDefault)
     iconName = fileIcons.defaultIcon.name
