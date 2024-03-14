@@ -24,3 +24,11 @@ console.log(await getIconFromFolder('src'))
 <img src="https://cdn.jsdelivr.net/gh/PKief/vscode-material-icon-theme@master/icons/vite.svg" width=50 />
 <img src="https://cdn.jsdelivr.net/gh/PKief/vscode-material-icon-theme@master/icons/typescript.svg" width=50 />
 <img src="https://cdn.jsdelivr.net/gh/PKief/vscode-material-icon-theme@master/icons/folder-src.svg" width=50 />
+
+## Roadmap
+
+More icon set support
+
+```ts
+import { getIconFromFile, getIconFromFolder } from 'lang-icons/xxx'
+```
