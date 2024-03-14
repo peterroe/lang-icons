@@ -1,0 +1,63 @@
+{
+  "name": "lang-icons",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.10.2",
+  "description": "typescript-template",
+  "author": "peterroe",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "typescript",
+    "template"
+  ],
+  "homepage": "https://github.com/peterroe/un#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterroe/un.git"
+  },
+  "bugs": "https://github.com/peterroe/un/issues",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./material": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint \"**/*.{ts,js}\"",
+    "fix": "eslint --fix \"**/*.{ts,js}\"",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "release": "pnpm build bumpp && npm publish",
+    "typecheck": "tsc --noEmit",
+    "git-hook-init": "git init && husky install && husky add .husky/pre-commit 'npm run lint && npm run typecheck'"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "0.35.3",
+    "@types/node": "^18.18.9",
+    "bumpp": "8.2.1",
+    "eslint": "8.53.0",
+    "esno": "0.16.3",
+    "husky": "8.0.3",
+    "tsup": "^6.7.0",
+    "typescript": "5.2.2",
+    "vitest": "0.28.5"
+  },
+  "dependencies": {
+    "consola": "^3.2.3",
+    "ofetch": "^1.3.3"
+  }
+}
