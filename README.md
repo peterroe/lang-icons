@@ -1,6 +1,6 @@
 ## lang-icons
 
-Infer and get file svg icon
+Infer and get svg icon from file name or folder name
 
 ## Usage
 
