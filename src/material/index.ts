@@ -2,16 +2,8 @@ import { fetch } from 'ofetch'
 import { fileIcons } from '../../vendor/vscode-material-icon-theme/src/icons/fileIcons'
 import { folderIcons } from '../../vendor/vscode-material-icon-theme/src/icons/folderIcons'
 
-export async function getIcon(fileName: string, preferFile = false) {
-  const [icon1, icon2] = await Promise.allSettled([
-    getIconFromFile(fileName),
-    getIconFromFolder(fileName),
-  ])
-  return preferFile ? (icon1 || icon2) : (icon2 || icon1)
-}
-
-export async function getIconFromFile(fileName: string) {
-  const iconName = fileIcons.icons.find((item) => {
+export async function getIconFromFile(fileName: string, isUseDefault = true) {
+  let iconName = fileIcons.icons.find((item) => {
     if (item.fileNames?.includes(fileName))
       return true
 
@@ -19,7 +11,12 @@ export async function getIconFromFile(fileName: string) {
       return true
 
     return false
-  })?.name || fileIcons.defaultIcon.name
+  })?.name
+
+  if (!iconName && isUseDefault)
+    iconName = fileIcons.defaultIcon.name
+  if (!iconName)
+    return ''
 
   try {
     const data = fetch(`https://cdn.jsdelivr.net/gh/PKief/vscode-material-icon-theme@master/icons/${iconName}.svg`)
@@ -33,17 +30,22 @@ export async function getIconFromFile(fileName: string) {
   }
 }
 
-export function getIconFromFolder(fileName: string) {
+export function getIconFromFolder(fileName: string, isUseDefault = true) {
   const specific = folderIcons.find(item => item.name === 'specific')
   if (!specific)
     return ''
 
-  const iconName = specific.icons?.find((item) => {
+  let iconName = specific.icons?.find((item) => {
     if (item.folderNames?.includes(fileName))
       return true
 
     return false
-  })?.name || specific.defaultIcon.name
+  })?.name
+
+  if (!iconName && isUseDefault)
+    iconName = specific.defaultIcon.name
+  if (!iconName)
+    return ''
 
   try {
     const data = fetch(`https://cdn.jsdelivr.net/gh/PKief/vscode-material-icon-theme@master/icons/${iconName}.svg`)
@@ -56,5 +58,3 @@ export function getIconFromFolder(fileName: string) {
     return ''
   }
 }
-
-getIconFromFile('index.vue')
