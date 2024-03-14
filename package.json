@@ -21,14 +21,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./material": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/material.cjs",
+      "import": "./dist/material.js",
+      "types": "./dist/material.d.ts"
     },
     "./*": "./*"
   },
