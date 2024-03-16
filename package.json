@@ -1,6 +1,6 @@
 {
   "name": "lang-icons",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "packageManager": "pnpm@8.10.2",
   "description": "typescript-template",
   "author": "peterroe",
@@ -20,10 +20,15 @@
     "url": "git+https://github.com/peterroe/un.git"
   },
   "bugs": "https://github.com/peterroe/un/issues",
-  "main": "./dist/material.js",
-  "module": "./dist/material.mjs",
-  "types": "./dist/material.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
     "./material": {
       "require": "./dist/material.cjs",
       "import": "./dist/material.js",
